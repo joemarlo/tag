@@ -1,6 +1,9 @@
 extends Actor
+class_name Player
 
 export var stomp_impulse = 1000.0
+var n_jumps: = 0
+var can_jump: = false
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -14,12 +17,19 @@ func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL) 
 	flip_sprite()
+	can_jump = can_jump()
 
 func get_direction() -> Vector2:
 	return Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		-1.0 if Input.is_action_just_pressed("jump") and is_on_floor() else 0.0
+		-1.0 if Input.is_action_just_pressed("jump") and can_jump else 0.0
 	)
+
+func can_jump() -> bool:
+	n_jumps += int( Input.is_action_just_pressed("jump") )
+	n_jumps = 0 if is_on_floor() else n_jumps
+	var can_jump: = is_on_floor() or (n_jumps < 2)
+	return can_jump
 
 func calculate_move_velocity(
 		linear_velocity: Vector2,
