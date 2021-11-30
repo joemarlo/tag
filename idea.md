@@ -1,0 +1,19 @@
+# tag
+
+Platformer-based tag game set in a city based on the cityscape artwork. 
+
+## Gameplay
+Player vs AI or player vs player. Players can hide behind buildings. Stamina bar where leading player has slightly less. Animation and freeze for tagged player when tagged to give other player a headstart.
+
+## Movement
+Players move left, right, jump and switch between layers. Slide and swing potentially. 
+
+## World
+Trains and cars move. Trains cause world to shake slightly so hiding players become shown. Clouds should animate. Lights should flicker. Sun should rise.
+
+## Score and sound
+TBD
+
+## MVP
+One level. 2D only with one layer. Basic AI. Export to html5.
+
