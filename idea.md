@@ -12,7 +12,7 @@ Players move left, right, jump and switch between layers. Slide and swing potent
 Trains and cars move. Trains cause world to shake slightly so hiding players become shown. Clouds should animate. Lights should flicker. Sun should rise.
 
 ## Score and sound
-TBD
+Celeste like but less ambitious.
 
 ## MVP
 One level. 2D only with one layer. Basic AI. Export to html5.

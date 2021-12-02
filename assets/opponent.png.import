@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cityscape-4_asd.png-be8dd0a29ca6b09be466474cf3f1821c.stex"
+path="res://.import/opponent.png-c9e0f3f772e01a51e9378b512945e091.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Cityscape-4_asd.png"
-dest_files=[ "res://.import/Cityscape-4_asd.png-be8dd0a29ca6b09be466474cf3f1821c.stex" ]
+source_file="res://assets/opponent.png"
+dest_files=[ "res://.import/opponent.png-c9e0f3f772e01a51e9378b512945e091.stex" ]
 
 [params]
 
