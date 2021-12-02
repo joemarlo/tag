@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cityscape.PNG-d873637f74dd2d0cea0ebd9591e57c3f.stex"
+path="res://.import/tilesheet_colored.png-c1d034f9f9e692ec3b38750f85401d6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cityscape.PNG"
-dest_files=[ "res://.import/cityscape.PNG-d873637f74dd2d0cea0ebd9591e57c3f.stex" ]
+source_file="res://assets/tiles/tilesheet_colored.png"
+dest_files=[ "res://.import/tilesheet_colored.png-c1d034f9f9e692ec3b38750f85401d6a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

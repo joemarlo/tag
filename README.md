@@ -1,9 +1,11 @@
 # tag
 
-Godot test game. Playable [here](https://www.marlo.works/games/tag/tag.html).
+Godot test game. Playable on desktop browser [here](https://www.marlo.works/games/tag/tag.html).
 
 <br>
-<p href="https://www.marlo.works/games/tag/tag.html" align="center">
+<p align="center">
+<a href="https://www.marlo.works/games/tag/tag.html">
 <img src="art/screenshot.png" width=70%>
+</a>
 </p>
 
