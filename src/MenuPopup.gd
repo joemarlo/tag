@@ -1,7 +1,7 @@
 extends Popup
 
 
-onready var player = get_node("Player")
+#onready var player = get_node("../../Player")
 var already_paused
 var selected_menu
 
