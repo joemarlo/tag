@@ -29,7 +29,7 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 43.5, 33.75 )
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level1" type="Node2D"]
 position = Vector2( 131, 4352 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 5450.0 ],

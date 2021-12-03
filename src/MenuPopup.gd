@@ -1,7 +1,6 @@
 extends Popup
 
 
-#onready var player = get_node("../../Player")
 var already_paused
 var selected_menu
 
@@ -40,7 +39,6 @@ func _input(event):
 			selected_menu = 0
 			change_menu_color()
 			# show popup
-			#player.set_process_input(false)
 			popup()
 	else:
 		if Input.is_action_just_pressed("ui_down"):
@@ -58,7 +56,6 @@ func _input(event):
 					# resume game
 					if not already_paused:
 						get_tree().paused = false
-					#player.set_process_input(true)
 					hide()
 				1:
 					# restart game

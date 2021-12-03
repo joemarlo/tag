@@ -4,14 +4,23 @@ class_name Player
 export var stomp_impulse = 1000.0
 var n_jumps: = 0
 var can_jump: = false
-var acceleration = 0.6
+var friction = Vector2(0.6, 0.0) #friction.y not implemented
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
+	
+	# shake camera and pause game
+	get_tree().get_root().set_disable_input(true)
+	$Camera2D.add_trauma(0.9)
+	yield(get_tree().create_timer(0.2), "timeout")
+	get_tree().get_root().set_disable_input(false)
+	
+	# delete player
 	queue_free()
+	
 	# restart game
 	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
 
@@ -47,7 +56,7 @@ func calculate_move_velocity(
 		is_jump_interrupted: bool
 	) -> Vector2:
 	var out: = linear_velocity
-	out.x = lerp(out.x, speed.x * direction.x, acceleration)
+	out.x = lerp(out.x, speed.x * direction.x, friction.x)
 	out.y += gravity * get_physics_process_delta_time()
 	if direction.y != 0.0:
 		out.y = speed.y * direction.y

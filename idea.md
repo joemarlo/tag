@@ -3,7 +3,7 @@
 Platformer-based tag game set in a city based on the cityscape artwork. 
 
 ## Gameplay
-Player vs AI or player vs player. Players can hide behind buildings. Stamina bar where leading player has slightly less. Animation and freeze for tagged player when tagged to give other player a headstart.
+Player vs AI or player vs player. Players can hide behind buildings. Stamina bar (not shown) where leading player has slightly less. Animation and freeze for tagged player when tagged to give other player a headstart.
 
 ## Movement
 Players move left, right, jump and switch between layers. Slide and swing potentially. Animations for movement -- e.g. dust.

@@ -15,7 +15,9 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	if body.global_position.y > get_node("StompDetector").global_position.y:
 		return
 	get_node("CollisionShape2D").disabled = true
+	
 	# otherwise delete the node (i.e. kill enemy)
+	get_node("../Player/Camera2D").add_trauma(0.45)
 	queue_free()
 
 
