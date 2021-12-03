@@ -4,6 +4,7 @@ class_name Player
 export var stomp_impulse = 1000.0
 var n_jumps: = 0
 var can_jump: = false
+var acceleration = 0.6
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL) 
+	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, true) 
 	flip_sprite()
 	can_jump = can_jump()
 
@@ -46,7 +47,7 @@ func calculate_move_velocity(
 		is_jump_interrupted: bool
 	) -> Vector2:
 	var out: = linear_velocity
-	out.x = speed.x * direction.x
+	out.x = lerp(out.x, speed.x * direction.x, acceleration)
 	out.y += gravity * get_physics_process_delta_time()
 	if direction.y != 0.0:
 		out.y = speed.y * direction.y
