@@ -1,12 +1,16 @@
 extends Actor
 class_name Player
 
+export var vara:float
+export var config:Resource 
+
 export var stomp_impulse = 1000.0
 var n_jumps: = 0
 var can_jump: = false
 var friction = Vector2(0.6, 0.0) #friction.y not implemented
-
+var wall_friction = 0.9 # multiplier
 onready var _sprite = $AnimatedSprite
+
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
@@ -20,7 +24,7 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	_sprite.stop()
 	
 	# shake camera
-	$Camera2D.add_trauma(0.9)
+	$Camera2D.add_trauma(0.8)
 	
 	# flash sprite color red
 	_sprite.modulate = Color("#f25c5c")
@@ -51,7 +55,7 @@ func _physics_process(delta: float) -> void:
 
 func get_direction() -> Vector2:
 	var direction_x: = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	var direction_y: =  -1.0 if Input.is_action_just_pressed("jump") and can_jump else 0.0
+	var direction_y: = -1.0 if Input.is_action_just_pressed("jump") and can_jump else 0.0
 	
 	return Vector2(direction_x, direction_y)
 
@@ -77,6 +81,8 @@ func calculate_move_velocity(
 		out.y = speed.y * direction.y
 	if is_jump_interrupted:
 		out.y = 0.0
+	if is_on_wall():
+		out.y = out.y * wall_friction
 	return out
 
 
