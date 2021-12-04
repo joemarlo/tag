@@ -6,19 +6,35 @@ var n_jumps: = 0
 var can_jump: = false
 var friction = Vector2(0.6, 0.0) #friction.y not implemented
 
+onready var _sprite = $AnimatedSprite
+
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	
-	# shake camera and pause game
-	get_tree().get_root().set_disable_input(true)
+	# freeze sprite
+	set_physics_process(false)
+	_sprite.set_process(false)
+	_sprite.stop()
+	
+	# shake camera
 	$Camera2D.add_trauma(0.9)
-	yield(get_tree().create_timer(0.2), "timeout")
-	get_tree().get_root().set_disable_input(false)
+	
+	# flash sprite color red
+	_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	_sprite.modulate = Color("#f2e1e1")
+	yield(get_tree().create_timer(0.08), "timeout")
+	_sprite.modulate = Color("#f25c5c")
+	
+	# pause before showing menu
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# delete player
+	set_physics_process(true)
+	_sprite.set_process(true)
 	queue_free()
 	
 	# restart game
@@ -30,7 +46,6 @@ func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, true) 
-	flip_sprite()
 	can_jump = can_jump()
 
 
@@ -71,10 +86,3 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	return out
 
 
-func flip_sprite() -> void:
-	var direction: = get_direction().x
-	if direction < 0:
-		get_node("player").set_flip_h(true)
-	elif direction > 0:
-		get_node("player").set_flip_h(false)
-	

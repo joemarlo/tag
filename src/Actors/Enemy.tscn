@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/opponent.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 60.5, 24 )
+extents = Vector2( 49, 24 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 55.5, 10 )
+extents = Vector2( 48, 5.5 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
@@ -21,12 +21,12 @@ texture = ExtResource( 1 )
 normal_map = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, -24 )
+position = Vector2( 0, -24 )
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( 0.5, 0 )
-scale = Vector2( 1.21, 0.783333 )
+position = Vector2( -3.33786e-06, 0 )
+scale = Vector2( 1.18, 0.783333 )
 rect = Rect2( -50, -60, 100, 60 )
 process_parent = true
 physics_process_parent = true
@@ -36,7 +36,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
 modulate = Color( 0, 0.180392, 1, 1 )
-position = Vector2( 0.5, -73 )
+position = Vector2( 0, -77.5 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]

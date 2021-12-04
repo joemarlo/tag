@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -25,11 +25,33 @@
 [ext_resource path="res://src/Actors/Opponent.gd" type="Script" id=23]
 [ext_resource path="res://src/Levels/TrainSmall.gd" type="Script" id=24]
 [ext_resource path="res://assets/background/Train_small.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprite/run-6.png" type="Texture" id=26]
+[ext_resource path="res://assets/sprite/run-5.png" type="Texture" id=27]
+[ext_resource path="res://assets/sprite/run-7.png" type="Texture" id=28]
+[ext_resource path="res://assets/sprite/run-4.png" type="Texture" id=29]
+[ext_resource path="res://assets/sprite/run-2.png" type="Texture" id=30]
+[ext_resource path="res://assets/sprite/run-8.png" type="Texture" id=31]
+[ext_resource path="res://assets/sprite/run-3.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprite/run-1.png" type="Texture" id=33]
+[ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=34]
+[ext_resource path="res://src/Levels/PlayerSprite.gd" type="Script" id=35]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 33 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 29 ), ExtResource( 27 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
+} ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.00715563, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.0784314 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 43.5, 33.75 )
 
-[node name="Level1" type="Node2D"]
+[node name="LevelCity" type="Node2D"]
 position = Vector2( 131, 4352 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 5450.0 ],
@@ -289,11 +311,31 @@ tile_data = PoolIntArray( -4456451, 16, 0, -4456450, 16, 0, -4521984, 16, 0, -45
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4799, -1510 )
 
+[node name="player" parent="Player" index="0"]
+visible = false
+
 [node name="Camera2D" parent="Player" index="2"]
 position = Vector2( 0, -34 )
 zoom = Vector2( 2.7, 2.7 )
 limit_right = 9027
 limit_bottom = 5450
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+position = Vector2( 0.999756, -93 )
+scale = Vector2( 2.51232, 2.77052 )
+frames = SubResource( 3 )
+animation = "run"
+frame = 2
+playing = true
+script = ExtResource( 35 )
+
+[node name="SpriteTrail" type="Node2D" parent="Player/AnimatedSprite"]
+show_behind_parent = true
+script = ExtResource( 34 )
+active = true
+life_time = 0.3
+copy_period = 0.05
+gradient = SubResource( 4 )
 
 [node name="Opponent" type="KinematicBody2D" parent="."]
 position = Vector2( 4491, -670 )
@@ -308,8 +350,8 @@ texture = ExtResource( 4 )
 position = Vector2( 1.5, -2.75 )
 shape = SubResource( 2 )
 
-[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="Opponent"]
-position = Vector2( 1, 31 )
+[node name="VisibilityEnabler2D2" type="VisibilityEnabler2D" parent="Opponent"]
+scale = Vector2( 1.18, 0.783333 )
 rect = Rect2( -50, -60, 100, 60 )
 process_parent = true
 physics_process_parent = true
