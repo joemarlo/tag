@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -26,9 +26,71 @@
 [ext_resource path="res://src/Levels/TrainSmall.gd" type="Script" id=24]
 [ext_resource path="res://assets/background/Train_small.png" type="Texture" id=25]
 [ext_resource path="res://assets/sprite/sprite_base_addon_2012_12_14.png" type="Texture" id=26]
+[ext_resource path="res://assets/dust/dust2.png" type="Texture" id=27]
+[ext_resource path="res://src/Levels/Dust.gd" type="Script" id=28]
+[ext_resource path="res://assets/dust/dust1.png" type="Texture" id=29]
+[ext_resource path="res://assets/dust/dust3.png" type="Texture" id=30]
+[ext_resource path="res://assets/dust/dust4.png" type="Texture" id=31]
 [ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=34]
 [ext_resource path="res://src/Levels/PlayerSprite.gd" type="Script" id=35]
-[ext_resource path="res://new_resource.tres" type="Resource" id=36]
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "dust_none",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "dust",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 256, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 0, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 64, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 128, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 192, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 256, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 384, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 832, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -132,6 +194,21 @@ region = Rect2( 448, 128, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "cat_wall_hold",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "cat_die",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "cat_fall",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "cat_idle",
@@ -414,10 +491,12 @@ tile_data = PoolIntArray( -4456451, 16, 0, -4456450, 16, 0, -4521984, 16, 0, -45
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4799, -1510 )
-config = ExtResource( 36 )
 
 [node name="player" parent="Player" index="0"]
 visible = false
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+position = Vector2( 3.5, -41 )
 
 [node name="Camera2D" parent="Player" index="2"]
 position = Vector2( 0, -34 )
@@ -425,12 +504,23 @@ zoom = Vector2( 2.7, 2.7 )
 limit_right = 9027
 limit_bottom = 5450
 
+[node name="CollisionShape2D" parent="Player/EnemyDetector" index="0"]
+position = Vector2( 4, -41.5 )
+
+[node name="Dust" type="AnimatedSprite" parent="Player"]
+visible = false
+position = Vector2( -120.253, -16.9633 )
+scale = Vector2( 3.00625, 2.64294 )
+frames = SubResource( 35 )
+animation = "dust_none"
+script = ExtResource( 28 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-position = Vector2( 3, -78 )
+position = Vector2( 4, -77 )
 scale = Vector2( 3.50616, 3.52588 )
 frames = SubResource( 25 )
-animation = "cat_idle"
-frame = 3
+animation = "cat_die"
+frame = 6
 playing = true
 script = ExtResource( 35 )
 

@@ -1,14 +1,11 @@
 extends Actor
 class_name Player
 
-export var vara:float
-export var config:Resource 
-
 export var stomp_impulse = 1000.0
 var n_jumps: = 0
 var can_jump: = false
-var friction = Vector2(0.6, 0.0) #friction.y not implemented
-var wall_friction = 0.9 # multiplier
+var friction = Vector2(0.1, 0.0) #friction.y not implemented
+var wall_friction = 0.6 # multiplier
 onready var _sprite = $AnimatedSprite
 
 
@@ -18,10 +15,11 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	
-	# freeze sprite
+	# freeze player sprite
 	set_physics_process(false)
 	_sprite.set_process(false)
 	_sprite.stop()
+	_sprite.play("cat_die")
 	
 	# shake camera
 	$Camera2D.add_trauma(0.8)
@@ -34,7 +32,7 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	_sprite.modulate = Color("#f25c5c")
 	
 	# pause before showing menu
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	
 	# delete player
 	set_physics_process(true)
@@ -63,9 +61,15 @@ func get_direction() -> Vector2:
 func can_jump() -> bool:
 	n_jumps += int( Input.is_action_just_pressed("jump") )
 	n_jumps = 0 if is_on_floor() else n_jumps
-	n_jumps = 1 if is_on_wall() else n_jumps
-	var can_jump: = is_on_floor() or is_on_wall() or (n_jumps < 2)
+	n_jumps = 1 if is_on_wall_and_input() else n_jumps
+	var can_jump: = is_on_floor() \
+		or is_on_wall_and_input() \
+		or (n_jumps < 2)
 	return can_jump
+
+
+func is_on_wall_and_input() -> bool:
+	return is_on_wall() and (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"))
 
 
 func calculate_move_velocity(
@@ -81,8 +85,9 @@ func calculate_move_velocity(
 		out.y = speed.y * direction.y
 	if is_jump_interrupted:
 		out.y = 0.0
-	if is_on_wall():
-		out.y = out.y * wall_friction
+	if is_on_wall_and_input():
+		var _wall_friction = 1 if Input.is_action_pressed("jump") else wall_friction
+		out.y = out.y * _wall_friction
 	return out
 
 

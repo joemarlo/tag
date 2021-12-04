@@ -18,16 +18,10 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/Actors/Player.gd"
-}, {
-"base": "Resource",
-"class": "myconfig",
-"language": "GDScript",
-"path": "res://myconfig.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Player": "",
-"myconfig": ""
+"Player": ""
 }
 
 [application]
