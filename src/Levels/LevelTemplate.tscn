@@ -1,9 +1,8 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/opponent.png" type="Texture" id=4]
 [ext_resource path="res://assets/background/Cityscape-3.png" type="Texture" id=5]
 [ext_resource path="res://assets/background/Cityscape-8.png" type="Texture" id=6]
 [ext_resource path="res://assets/background/Cityscape-2.png" type="Texture" id=7]
@@ -53,50 +52,30 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 0, 64, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 64, 64, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 128, 64, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 192, 64, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 256, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 320, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 384, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 448, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 320, 832, 64, 64 )
+region = Rect2( 256, 512, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
@@ -138,31 +117,6 @@ flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 448, 128, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 256, 512, 64, 64 )
-
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
 atlas = ExtResource( 26 )
@@ -198,23 +152,53 @@ flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 384, 256, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 832, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 256, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 384, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 448, 64, 64, 64 )
+
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "cat_walk",
-"speed": 15.0
-}, {
-"frames": [ SubResource( 27 ) ],
-"loop": true,
-"name": "cat_fall",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
-"loop": true,
-"name": "cat_jump",
-"speed": 15.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "cat_idle",
@@ -225,19 +209,30 @@ animations = [ {
 "name": "cat_wall_hold",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "cat_jump",
+"speed": 15.0
+}, {
 "frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
 "loop": false,
 "name": "cat_die",
 "speed": 4.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "cat_fall",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "cat_walk",
+"speed": 15.0
 } ]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.00715563, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.0784314 )
-
-[sub_resource type="CapsuleShape2D" id=37]
-radius = 27.1582
-height = 50.7703
 
 [sub_resource type="SpriteFrames" id=36]
 animations = [ {
@@ -507,13 +502,10 @@ tile_data = PoolIntArray( -4456451, 16, 0, -4456450, 16, 0, -4521984, 16, 0, -45
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4799, -1510 )
 
-[node name="player" parent="Player" index="0"]
-visible = false
-
-[node name="CollisionShape2D" parent="Player" index="1"]
+[node name="CollisionShape2D" parent="Player" index="0"]
 position = Vector2( 3.5, -41 )
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" parent="Player" index="1"]
 position = Vector2( 0, -34 )
 zoom = Vector2( 2.7, 2.7 )
 limit_right = 9027
@@ -552,14 +544,10 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource( 23 )
 
-[node name="opponent" type="Sprite" parent="Opponent"]
-visible = false
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
-position = Vector2( 5.00049, -22 )
-rotation = 0.349066
-shape = SubResource( 37 )
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Opponent"]
+position = Vector2( -3.22356, -1.75007 )
+scale = Vector2( 1.10253, 0.9375 )
+polygon = PoolVector2Array( -22.4233, -12.573, 4, -15, 4, -67, 27, -67, 28, -16, 29, 27, -23.1528, 25.4912 )
 
 [node name="VisibilityEnabler2D2" type="VisibilityEnabler2D" parent="Opponent"]
 visible = false
@@ -574,6 +562,13 @@ position = Vector2( 26.0002, -44 )
 scale = Vector2( 3.52083, 3.52083 )
 frames = SubResource( 36 )
 animation = "llama"
+
+[node name="TagDetector" type="Area2D" parent="Opponent"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Opponent/TagDetector"]
+position = Vector2( -7.25815, -2.45735 )
+scale = Vector2( 1.37097, 1.07713 )
+polygon = PoolVector2Array( -22.4233, -12.573, 4, -15, 4, -67, 27, -67, 28, -16, 29, 27, -23.1528, 25.4912 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 763, -746 )
@@ -689,5 +684,6 @@ align = 1
 valign = 1
 
 [connection signal="ready" from="Player" to="Player" method="_on_Player_ready"]
+[connection signal="area_entered" from="Opponent/TagDetector" to="Opponent" method="_on_TagDetector_area_entered"]
 
 [editable path="Player"]
