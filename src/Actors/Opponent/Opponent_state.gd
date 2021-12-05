@@ -7,7 +7,8 @@ var change_state
 var animated_sprite
 var persistent_state
 var run_speed = 800.0
-onready var player = get_node("../Player")
+onready var player = get_node("/root/LevelCity/Player")
+onready var opponent = get_node("/root/LevelCity/Opponent")
 
 func setup(change_state, animated_sprite, persistent_state):
 	self.change_state = change_state

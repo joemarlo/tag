@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Opponent_state",
 "class": "Opponent_state_evade",
 "language": "GDScript",
-"path": "res://Opponent_state_evade.gd"
+"path": "res://src/Actors/Opponent/Opponent_state_evade.gd"
 }, {
 "base": "Reference",
 "class": "Opponent_state_factory",

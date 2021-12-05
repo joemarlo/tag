@@ -42,41 +42,16 @@
 
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "dust_none",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 29 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "dust",
 "speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "dust_none",
+"speed": 5.0
 } ]
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 320, 832, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
@@ -118,6 +93,11 @@ flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 448, 64, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 832, 64, 64 )
+
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 26 )
@@ -157,6 +137,26 @@ region = Rect2( 384, 128, 64, 64 )
 flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 448, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
@@ -200,25 +200,25 @@ region = Rect2( 384, 256, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
-"frames": [ SubResource( 27 ) ],
-"loop": true,
-"name": "cat_fall",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "cat_idle",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "cat_walk",
 "speed": 15.0
 }, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "cat_fall",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
 "name": "cat_jump",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "cat_idle",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 26 ) ],
 "loop": true,
@@ -535,7 +535,6 @@ position = Vector2( 4, -77 )
 scale = Vector2( 3.50616, 3.52588 )
 frames = SubResource( 25 )
 animation = "cat_idle"
-frame = 3
 playing = true
 script = ExtResource( 35 )
 
@@ -560,7 +559,6 @@ texture = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
 position = Vector2( 5.00049, -22 )
 rotation = 0.349066
-scale = Vector2( 1, 1 )
 shape = SubResource( 37 )
 
 [node name="VisibilityEnabler2D2" type="VisibilityEnabler2D" parent="Opponent"]
