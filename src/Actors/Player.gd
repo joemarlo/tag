@@ -4,7 +4,7 @@ class_name Player
 export var stomp_impulse = 1000.0
 var n_jumps: = 0
 var can_jump: = false
-var friction = Vector2(0.1, 0.0) #friction.y not implemented
+var friction = Vector2(0.15, 0.0) #friction.y not implemented
 var wall_friction = 0.6 # multiplier
 onready var _sprite = $AnimatedSprite
 
@@ -25,11 +25,7 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	$Camera2D.add_trauma(0.8)
 	
 	# flash sprite color red
-	_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color("#f2e1e1")
-	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color("#f25c5c")
+	flash_sprite()
 	
 	# pause before showing menu
 	yield(get_tree().create_timer(2), "timeout")
@@ -49,6 +45,14 @@ func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, true) 
 	can_jump = can_jump()
+
+
+func flash_sprite() -> void:
+	_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	_sprite.modulate = Color("#f2e1e1")
+	yield(get_tree().create_timer(0.08), "timeout")
+	_sprite.modulate = Color("#f25c5c")
 
 
 func get_direction() -> Vector2:

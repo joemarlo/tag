@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -22,7 +22,7 @@
 [ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=20]
 [ext_resource path="res://src/Levels/Train.gd" type="Script" id=21]
 [ext_resource path="res://src/Levels/violet_tileset.tres" type="TileSet" id=22]
-[ext_resource path="res://src/Actors/Opponent.gd" type="Script" id=23]
+[ext_resource path="res://src/Actors/Opponent/Opponent_state_persistent.gd" type="Script" id=23]
 [ext_resource path="res://src/Levels/TrainSmall.gd" type="Script" id=24]
 [ext_resource path="res://assets/background/Train_small.png" type="Texture" id=25]
 [ext_resource path="res://assets/sprite/sprite_base_addon_2012_12_14.png" type="Texture" id=26]
@@ -31,8 +31,14 @@
 [ext_resource path="res://assets/dust/dust1.png" type="Texture" id=29]
 [ext_resource path="res://assets/dust/dust3.png" type="Texture" id=30]
 [ext_resource path="res://assets/dust/dust4.png" type="Texture" id=31]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_5.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_1.png" type="Texture" id=33]
 [ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=34]
 [ext_resource path="res://src/Levels/PlayerSprite.gd" type="Script" id=35]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_4.png" type="Texture" id=36]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_0.png" type="Texture" id=37]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_2.png" type="Texture" id=38]
+[ext_resource path="res://assets/sprite_opponent/lama_sprite_3.png" type="Texture" id=39]
 
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
@@ -46,46 +52,6 @@ animations = [ {
 "name": "dust",
 "speed": 10.0
 } ]
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 256, 512, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 0, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 64, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 128, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=32]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 256, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=33]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 320, 256, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=34]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 384, 256, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
@@ -192,18 +158,48 @@ flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 448, 128, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 256, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 0, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 64, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 128, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 192, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 256, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 320, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 26 )
+region = Rect2( 384, 256, 64, 64 )
+
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
-"frames": [ SubResource( 26 ) ],
-"loop": true,
-"name": "cat_wall_hold",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
-"loop": false,
-"name": "cat_die",
-"speed": 4.0
-}, {
 "frames": [ SubResource( 27 ) ],
 "loop": true,
 "name": "cat_fall",
@@ -223,14 +219,33 @@ animations = [ {
 "loop": true,
 "name": "cat_jump",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "cat_wall_hold",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "cat_die",
+"speed": 4.0
 } ]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.00715563, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.0784314 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 43.5, 33.75 )
+[sub_resource type="CapsuleShape2D" id=37]
+radius = 27.1582
+height = 50.7703
+
+[sub_resource type="SpriteFrames" id=36]
+animations = [ {
+"frames": [ ExtResource( 37 ), ExtResource( 33 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "llama",
+"speed": 10.0
+} ]
 
 [node name="LevelCity" type="Node2D"]
 position = Vector2( 131, 4352 )
@@ -519,8 +534,8 @@ script = ExtResource( 28 )
 position = Vector2( 4, -77 )
 scale = Vector2( 3.50616, 3.52588 )
 frames = SubResource( 25 )
-animation = "cat_die"
-frame = 6
+animation = "cat_idle"
+frame = 3
 playing = true
 script = ExtResource( 35 )
 
@@ -539,17 +554,28 @@ collision_mask = 9
 script = ExtResource( 23 )
 
 [node name="opponent" type="Sprite" parent="Opponent"]
+visible = false
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
-position = Vector2( 1.5, -2.75 )
-shape = SubResource( 2 )
+position = Vector2( 5.00049, -22 )
+rotation = 0.349066
+scale = Vector2( 1, 1 )
+shape = SubResource( 37 )
 
 [node name="VisibilityEnabler2D2" type="VisibilityEnabler2D" parent="Opponent"]
-scale = Vector2( 1.18, 0.783333 )
+visible = false
+position = Vector2( -43.0002, 1809 )
+scale = Vector2( 89.98, 91.4833 )
 rect = Rect2( -50, -60, 100, 60 )
 process_parent = true
 physics_process_parent = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Opponent"]
+position = Vector2( 26.0002, -44 )
+scale = Vector2( 3.52083, 3.52083 )
+frames = SubResource( 36 )
+animation = "llama"
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 763, -746 )
