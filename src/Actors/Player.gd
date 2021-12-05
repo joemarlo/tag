@@ -50,9 +50,11 @@ func _physics_process(delta: float) -> void:
 func flash_sprite() -> void:
 	_sprite.modulate = Color("#f25c5c")
 	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color("#f2e1e1")
+	_sprite.modulate = Color(1, 1, 1)
 	yield(get_tree().create_timer(0.08), "timeout")
 	_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	_sprite.modulate = Color(1, 1, 1)
 
 
 func get_direction() -> Vector2:

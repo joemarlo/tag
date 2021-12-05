@@ -21,3 +21,31 @@ func flip_sprite(velocity):
 		opponent_sprite.set_flip_h(true)
 	elif velocity.x > 0:
 		opponent_sprite.set_flip_h(false)
+
+
+func freeze_character(character, character_sprite) -> void:
+		character.set_physics_process(false)
+		character.set_process(false)
+		character_sprite.set_process(false)
+		character_sprite.stop()
+		
+		flash_sprite(character_sprite)
+		yield(get_tree().create_timer(1.5), "timeout")
+		
+		character.set_physics_process(true)
+		character.set_process(true)
+		character_sprite.set_process(true)
+
+
+func flash_sprite(character_sprite) -> void:
+	character_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	character_sprite.modulate = Color(1, 1, 1)
+	yield(get_tree().create_timer(0.08), "timeout")
+	character_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	character_sprite.modulate = Color(1, 1, 1)
+	yield(get_tree().create_timer(0.08), "timeout")
+	character_sprite.modulate = Color("#f25c5c")
+	yield(get_tree().create_timer(0.08), "timeout")
+	character_sprite.modulate = Color(1, 1, 1)

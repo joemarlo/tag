@@ -6,6 +6,7 @@ var evade_radius = 1000
 func _ready():
 	#opponent_sprite.play("idle")
 	print('opponent state: evade')
+	freeze_character(player, player_sprite)
 
 
 func _physics_process(delta):
@@ -18,6 +19,6 @@ func evade() -> void:
 		if opponent.position.distance_to(player.position) < evade_radius:
 			velocity = -opponent.position.direction_to(player.position) * run_speed
 			randomize()
-			velocity = velocity * rand_range(0.50, 1.5)
+			velocity = velocity * rand_range(0.25, 1.75)
 	velocity = opponent.move_and_slide(velocity)
 	flip_sprite(velocity)
