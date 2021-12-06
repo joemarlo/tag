@@ -11,7 +11,7 @@ onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
 onready var opponent = get_node("/root/LevelCity/Opponent")
 onready var opponent_sprite = opponent.get_node("AnimatedSprite")
-onready var stopwatch = get_node("/root/LevelCity/Stopwatch/stopwatch")
+
 
 func setup(change_state, opponent_sprite, persistent_state):
 	self.change_state = change_state
@@ -60,8 +60,3 @@ func flash_sprite(character_sprite) -> void:
 
 func stopwatch(delta) -> void:
 	Global.stopwatch += delta;
-	stopwatch.text = "%0.2f" % Global.stopwatch
-	if Global.stopwatch > 0:
-		stopwatch.add_color_override("font_color", Color("#6bb572"))
-	else:
-		stopwatch.add_color_override("font_color", Color("#c24c4c"))
