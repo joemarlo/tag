@@ -8,6 +8,7 @@ var friction = Vector2(0.15, 0.0) #friction.y not implemented
 var wall_friction = 0.6 # multiplier
 var enemy_time_penalty = -3
 onready var _sprite = $AnimatedSprite
+onready var camera = $Camera2D
 
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
@@ -15,9 +16,9 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	# TODO only do if body is enemy; not opponent
 	if body.get_class() == 'Enemy':
 		time_penalty()
+		camera.add_trauma(0.6)
 
 
 func _physics_process(delta: float) -> void:

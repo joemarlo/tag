@@ -11,6 +11,7 @@ onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
 onready var opponent = get_node("/root/LevelCity/Opponent")
 onready var opponent_sprite = opponent.get_node("AnimatedSprite")
+onready var camera = player.get_node("Camera2D")
 
 
 func setup(change_state, opponent_sprite, persistent_state):
@@ -31,6 +32,9 @@ func freeze_character(character, character_sprite) -> void:
 		character.set_process(false)
 		character_sprite.set_process(false)
 		character_sprite.stop()
+		
+		# shake camera
+		camera.add_trauma(0.35)
 		
 		flash_sprite(character_sprite)
 		yield(get_tree().create_timer(0.5), "timeout")
