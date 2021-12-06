@@ -42,6 +42,13 @@ func restart_game() -> void:
 	player.set_physics_process(true)
 	player_sprite.set_process(true)
 	player.queue_free()
+	
+	# reset clock
+	reset_stopwatch()
 
 	# restart game
 	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+
+
+func reset_stopwatch() -> void:
+	Global.stopwatch = 0

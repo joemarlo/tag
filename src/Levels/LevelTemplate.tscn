@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://src/Stopwatch.gd" type="Script" id=42]
 [ext_resource path="res://assets/stopwatch/over.png" type="Texture" id=43]
 [ext_resource path="res://src/End_game.gd" type="Script" id=44]
+[ext_resource path="res://src/Levels/Sun.gd" type="Script" id=45]
 
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
@@ -278,6 +279,7 @@ __meta__ = {
 [node name="Sun" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 position = Vector2( -517, 2198 )
 motion_scale = Vector2( 0.4, 0.7 )
+script = ExtResource( 45 )
 
 [node name="Cityscape" type="TextureRect" parent="CanvasLayer/ParallaxBackground/Sun"]
 margin_left = -2215.0
@@ -554,6 +556,9 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4799, -1510 )
+
+[node name="CollisionShape2D" parent="Player" index="0"]
+position = Vector2( 2, -44 )
 
 [node name="Camera2D" parent="Player" index="1"]
 position = Vector2( 0, -34 )

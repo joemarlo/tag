@@ -41,21 +41,11 @@ func freeze_character(character, character_sprite) -> void:
 
 
 func flash_sprite(character_sprite) -> void:
-	character_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color(1, 1, 1)
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color(1, 1, 1)
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color(1, 1, 1)
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	character_sprite.modulate = Color(1, 1, 1)
+	for i in range(4):
+		character_sprite.modulate = Color("#f25c5c")
+		yield(get_tree().create_timer(0.08), "timeout")
+		character_sprite.modulate = Color(1, 1, 1)
+		yield(get_tree().create_timer(0.08), "timeout")
 
 
 func stopwatch(delta) -> void:

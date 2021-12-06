@@ -1,7 +1,12 @@
 extends Actor
+class_name Enemy
 
 var kill_time_bonus = 3
 var label_color = Color("#0fab3e")
+
+
+ # overrides native class when calling this function
+func get_class(): return "Enemy"
 
 
 func _init():

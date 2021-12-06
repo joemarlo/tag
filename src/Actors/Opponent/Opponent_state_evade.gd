@@ -8,6 +8,8 @@ var velocity = Vector2.ZERO
 func _ready():
 	print('opponent state: evade')
 	freeze_character(player, player_sprite)
+	# ensure sprite is correct color (sometimes is sticky when fast tagging)
+	opponent_sprite.modulate = Color(1, 1, 1)
 
 
 func _process(delta):

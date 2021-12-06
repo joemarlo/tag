@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/opponent.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 49, 24 )
+extents = Vector2( 52, 24 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 48, 5.5 )

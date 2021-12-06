@@ -15,31 +15,9 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	time_penalty() #TODO: sometimes this doesn't work b/c collision shapes?
-
-
-#	# freeze player sprite
-#	set_physics_process(false)
-#	_sprite.set_process(false)
-#	_sprite.stop()
-#	_sprite.play("cat_die")
-#
-#	# shake camera
-#	$Camera2D.add_trauma(0.8)
-#
-#	# flash sprite color red
-#	flash_sprite()
-#
-#	# pause before showing menu
-#	yield(get_tree().create_timer(2), "timeout")
-#
-#	# delete player
-#	set_physics_process(true)
-#	_sprite.set_process(true)
-#	queue_free()
-#
-#	# restart game
-#	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+	# TODO only do if body is enemy; not opponent
+	if body.get_class() == 'Enemy':
+		time_penalty()
 
 
 func _physics_process(delta: float) -> void:

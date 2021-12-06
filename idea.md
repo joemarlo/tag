@@ -18,5 +18,5 @@ Celeste like but less ambitious.
 One level. 2D only with one layer. Basic AI. Export to html5.
 
 ## Todo / issues
-- Need state machine + pathfinding for AI
+- Need pathfinding for AI
 
