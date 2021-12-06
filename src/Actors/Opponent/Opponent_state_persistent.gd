@@ -23,6 +23,7 @@ func _physics_process(delta):
 
 
 func _on_TagDetector_area_entered(body: PhysicsBody2D) -> void:
+	# TODO: all bodies trigger this despite mask level
 	swap_state()
 
 

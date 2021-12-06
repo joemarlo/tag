@@ -1,20 +1,27 @@
 extends Opponent_state
 class_name Opponent_state_evade
 
-var evade_radius = 1000
+var evade_radius = 700
+var velocity = Vector2.ZERO
+
 
 func _ready():
-	#opponent_sprite.play("idle")
 	print('opponent state: evade')
 	freeze_character(player, player_sprite)
 
 
+func _process(delta):
+	stopwatch(-delta)
+
+
 func _physics_process(delta):
 	evade()
+	
+	# add gravity only during evade so opponent doesn't float away
+	velocity.y += gravity * delta
 
 
 func evade() -> void:
-	var velocity = Vector2.ZERO
 	if player:
 		if opponent.position.distance_to(player.position) < evade_radius:
 			velocity = -opponent.position.direction_to(player.position) * run_speed
@@ -22,3 +29,4 @@ func evade() -> void:
 			velocity = velocity * rand_range(0.25, 1.75)
 	velocity = opponent.move_and_slide(velocity)
 	flip_sprite(velocity)
+

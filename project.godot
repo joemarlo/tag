@@ -66,6 +66,10 @@ config/name="tag"
 run/main_scene="res://src/Levels/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://src/global.gd"
+
 [display]
 
 window/size/width=1280
@@ -106,7 +110,7 @@ menu={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemies"
-2d_physics/layer_3="coins"
+2d_physics/layer_3="opponent"
 2d_physics/layer_4="world"
 
 [physics]

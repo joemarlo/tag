@@ -102,4 +102,3 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	out.y = -impulse
 	return out
 
-
