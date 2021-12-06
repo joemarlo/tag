@@ -1,9 +1,9 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/montserrat_extrabold.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/MPLUS_medium.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/background/Cityscape-3.png" type="Texture" id=5]
 [ext_resource path="res://assets/background/Cityscape-8.png" type="Texture" id=6]
 [ext_resource path="res://assets/background/Cityscape-2.png" type="Texture" id=7]
@@ -42,12 +42,8 @@
 [ext_resource path="res://assets/stopwatch/background.png" type="Texture" id=40]
 [ext_resource path="res://assets/stopwatch/progress.png" type="Texture" id=41]
 [ext_resource path="res://src/Stopwatch.gd" type="Script" id=42]
-
-[sub_resource type="DynamicFont" id=37]
-size = 30
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
+[ext_resource path="res://assets/stopwatch/over.png" type="Texture" id=43]
+[ext_resource path="res://src/End_game.gd" type="Script" id=44]
 
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
@@ -254,6 +250,7 @@ animations = [ {
 
 [node name="LevelCity" type="Node2D"]
 position = Vector2( 131, 4352 )
+script = ExtResource( 44 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 5450.0 ],
 "_edit_vertical_guides_": [ 9027.0 ]
@@ -522,28 +519,35 @@ __meta__ = {
 }
 
 [node name="StopwatchBar" type="TextureProgress" parent="Stopwatch/Control"]
-margin_right = 20.0
+margin_right = 12.0
 margin_bottom = 500.0
 min_value = -30.0
 max_value = 30.0
 step = 0.01
 texture_under = ExtResource( 40 )
+texture_over = ExtResource( 43 )
 texture_progress = ExtResource( 41 )
 fill_mode = 3
 tint_under = Color( 0, 0, 0, 0.345098 )
-tint_progress = Color( 1, 1, 1, 0.545098 )
+tint_over = Color( 1, 1, 1, 0.784314 )
+tint_progress = Color( 0.0588235, 0.670588, 0.243137, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StopwatchText" type="Label" parent="Stopwatch/Control"]
+anchor_left = -0.21
+anchor_top = 0.002
+anchor_right = -0.21
+anchor_bottom = 0.002
 margin_left = 43.0
 margin_top = 19.0
 margin_right = 156.0
 margin_bottom = 98.0
 size_flags_horizontal = 3
-custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 37 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.952941, 0.901961, 0.901961, 1 )
+custom_fonts/font = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -611,6 +615,8 @@ frames = SubResource( 36 )
 animation = "llama"
 
 [node name="TagDetector" type="Area2D" parent="Opponent"]
+collision_layer = 4
+collision_mask = 9
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Opponent/TagDetector"]
 position = Vector2( -7.25815, -2.45735 )

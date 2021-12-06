@@ -6,6 +6,7 @@ var n_jumps: = 0
 var can_jump: = false
 var friction = Vector2(0.15, 0.0) #friction.y not implemented
 var wall_friction = 0.6 # multiplier
+var enemy_time_penalty = -3
 onready var _sprite = $AnimatedSprite
 
 
@@ -13,8 +14,10 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 
-#func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-#
+func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
+	time_penalty() #TODO: sometimes this doesn't work b/c collision shapes?
+
+
 #	# freeze player sprite
 #	set_physics_process(false)
 #	_sprite.set_process(false)
@@ -102,3 +105,7 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	out.y = -impulse
 	return out
 
+
+func time_penalty() -> void:
+	# add time to stopwatch
+	Global.stopwatch += enemy_time_penalty
