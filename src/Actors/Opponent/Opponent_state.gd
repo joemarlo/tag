@@ -60,4 +60,8 @@ func flash_sprite(character_sprite) -> void:
 
 func stopwatch(delta) -> void:
 	Global.stopwatch += delta;
-	stopwatch.text = "%0.3f" % Global.stopwatch
+	stopwatch.text = "%0.2f" % Global.stopwatch
+	if Global.stopwatch > 0:
+		stopwatch.add_color_override("font_color", Color("#6bb572"))
+	else:
+		stopwatch.add_color_override("font_color", Color("#c24c4c"))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -39,7 +39,6 @@
 [ext_resource path="res://assets/sprite_opponent/lama_sprite_0.png" type="Texture" id=37]
 [ext_resource path="res://assets/sprite_opponent/lama_sprite_2.png" type="Texture" id=38]
 [ext_resource path="res://assets/sprite_opponent/lama_sprite_3.png" type="Texture" id=39]
-[ext_resource path="res://src/global.gd" type="Script" id=40]
 
 [sub_resource type="DynamicFont" id=37]
 size = 50
@@ -256,9 +255,6 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 5450.0 ],
 "_edit_vertical_guides_": [ 9027.0 ]
 }
-
-[node name="Global" type="Node" parent="."]
-script = ExtResource( 40 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -512,12 +508,24 @@ tile_data = PoolIntArray( -4456451, 16, 0, -4456450, 16, 0, -4521984, 16, 0, -45
 
 [node name="Stopwatch" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="Stopwatch"]
+visible = false
+margin_left = 230.0
+margin_top = 200.0
+margin_right = 390.0
+margin_bottom = 280.0
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="stopwatch" type="Label" parent="Stopwatch"]
-margin_left = 244.0
+margin_left = 240.0
 margin_top = 210.0
-margin_right = 686.0
+margin_right = 682.0
 margin_bottom = 455.0
 size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": false

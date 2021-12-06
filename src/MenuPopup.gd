@@ -59,8 +59,12 @@ func _input(event):
 					hide()
 				1:
 					# restart game
-					get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+					reset_game()
 					get_tree().paused = false
 				2:
 					# quit game
 					get_tree().quit()
+
+func reset_game() -> void:
+	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+	Global.stopwatch = 0
