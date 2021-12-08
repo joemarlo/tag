@@ -2,7 +2,7 @@ extends Node
 
 var stopwatch = 0.0 
 var stopwatch_range = [-25, 25]
-
+var opponent_state
 
 func _reset_game() -> void:
 	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")

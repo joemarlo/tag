@@ -7,6 +7,7 @@ var velocity = Vector2.ZERO
 
 func _ready():
 	print('opponent state: evade')
+	Global.opponent_state = 'evade'
 	stall(player)
 
 

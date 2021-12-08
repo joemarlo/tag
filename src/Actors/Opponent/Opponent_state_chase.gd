@@ -1,9 +1,12 @@
 extends Opponent_state
 class_name Opponent_state_chase
 
+signal opponent_chase
+
 
 func _ready():
 	print('opponent state: chase')
+	Global.opponent_state = 'chase'
 	stall(self)
 
 
