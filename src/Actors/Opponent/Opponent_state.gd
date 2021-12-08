@@ -1,5 +1,4 @@
 extends Actor
-
 class_name Opponent_state
 
 # https://docs.godotengine.org/en/stable/tutorials/misc/state_design_pattern.html
@@ -7,11 +6,13 @@ class_name Opponent_state
 var change_state
 var persistent_state
 var run_speed = 800.0
+var freeze_length = 1
 onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
 onready var opponent = get_node("/root/LevelCity/Opponent")
 onready var opponent_sprite = opponent.get_node("AnimatedSprite")
 onready var camera = player.get_node("Camera2D")
+onready var stopwatch = get_node("/root/LevelCity/Stopwatch")
 
 
 func setup(change_state, opponent_sprite, persistent_state):
@@ -27,30 +28,18 @@ func flip_sprite(velocity):
 		opponent_sprite.set_flip_h(false)
 
 
-func freeze_character(character, character_sprite) -> void:
-		character.set_physics_process(false)
-		character.set_process(false)
-		character_sprite.set_process(false)
-		character_sprite.stop()
-		
-		# shake camera
-		camera.add_trauma(0.35)
-		
-		flash_sprite(character_sprite)
-		yield(get_tree().create_timer(0.5), "timeout")
-		
-		character.set_physics_process(true)
-		character.set_process(true)
-		character_sprite.set_process(true)
+func stall(character) -> void:
+	character.freeze()
+	camera.add_trauma(0.35)
+	character.flash_sprite()
+	yield(get_tree().create_timer(freeze_length), "timeout")
+	character.unfreeze()
 
 
-func flash_sprite(character_sprite) -> void:
-	for i in range(4):
-		character_sprite.modulate = Color("#f25c5c")
-		yield(get_tree().create_timer(0.08), "timeout")
-		character_sprite.modulate = Color(1, 1, 1)
-		yield(get_tree().create_timer(0.08), "timeout")
-
-
-func stopwatch(delta) -> void:
-	Global.stopwatch += delta;
+func freeze() -> void:
+	Global._freeze(self, opponent_sprite)
+func unfreeze() -> void:
+	Global._unfreeze(self, opponent_sprite)
+	opponent_sprite.play("llama")
+func flash_sprite() -> void:
+	Global._flash_sprite(opponent_sprite)

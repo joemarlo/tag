@@ -66,3 +66,6 @@ func calculate_bar_percentage(stopwatch, stopwatch_range) -> float:
 	bar_percentage = max(0, min(1, bar_percentage))
 	return bar_percentage
 
+
+func add_to_stopwatch(delta) -> void:
+	Global.stopwatch += delta;

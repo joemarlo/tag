@@ -20,4 +20,3 @@ func sprite_animate() -> void:
 		set_flip_h(false)
 	else:
 		play("cat_idle")
-	

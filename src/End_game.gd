@@ -2,6 +2,8 @@ extends Node2D
 
 onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
+onready var opponent = get_node("/root/LevelCity/Opponent")
+onready var opponent_sprite = opponent.get_node("AnimatedSprite")
 var stopwatch_range = Global.stopwatch_range
 
 
@@ -28,27 +30,16 @@ func lose_game() -> void:
 
 
 func freeze_game() -> void:
-	# freeze player sprite
-	player.set_physics_process(false)
-	player_sprite.set_process(false)
-	player_sprite.stop()
+	player.freeze()
+	opponent.freeze()
 
 
 func restart_game() -> void:
 	# pause before showing menu
 	yield(get_tree().create_timer(1.5), "timeout")
 
-	# unfreeze and delete player
-	player.set_physics_process(true)
-	player_sprite.set_process(true)
-	player.queue_free()
+	# unfreeze characters
+	player.unfreeze()
+	opponent.unfreeze()
 	
-	# reset clock
-	reset_stopwatch()
-
-	# restart game
-	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
-
-
-func reset_stopwatch() -> void:
-	Global.stopwatch = 0
+	Global._reset_game()

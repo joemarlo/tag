@@ -2,8 +2,8 @@ extends Actor
 class_name Player
 
 export var stomp_impulse = 1000.0
-var n_jumps: = 0
-var can_jump: = false
+var n_jumps = 0
+var can_jump = false
 var friction = Vector2(0.15, 0.0) #friction.y not implemented
 var wall_friction = 0.6 # multiplier
 var enemy_time_penalty = -3
@@ -29,16 +29,6 @@ func _physics_process(delta: float) -> void:
 	can_jump = can_jump()
 
 
-func flash_sprite() -> void:
-	_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color(1, 1, 1)
-	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color("#f25c5c")
-	yield(get_tree().create_timer(0.08), "timeout")
-	_sprite.modulate = Color(1, 1, 1)
-
-
 func get_direction() -> Vector2:
 	var direction_x: = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var direction_y: = -1.0 if Input.is_action_just_pressed("jump") and can_jump else 0.0
@@ -50,7 +40,7 @@ func can_jump() -> bool:
 	n_jumps += int( Input.is_action_just_pressed("jump") )
 	n_jumps = 0 if is_on_floor() else n_jumps
 	n_jumps = 1 if is_on_wall_and_input() else n_jumps
-	var can_jump: = is_on_floor() \
+	can_jump = is_on_floor() \
 		or is_on_wall_and_input() \
 		or (n_jumps < 2)
 	return can_jump
@@ -88,3 +78,11 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 func time_penalty() -> void:
 	# add time to stopwatch
 	Global.stopwatch += enemy_time_penalty
+
+
+func freeze() -> void:
+	Global._freeze(self, _sprite)
+func unfreeze() -> void:
+	Global._unfreeze(self, _sprite)
+func flash_sprite() -> void:
+	Global._flash_sprite(_sprite)

@@ -9,12 +9,17 @@ onready var opponent = get_node("/root/LevelCity/Opponent")
 onready var opponent_sprite = opponent.get_node("AnimatedSprite")
 
 var state
-var state_factory
+var elapsed_threshold = 1.5
+var elapsed = elapsed_threshold
+onready var state_factory = Opponent_state_factory.new()
 
 
 func _ready():
-	state_factory = Opponent_state_factory.new()
 	change_state("chase")
+
+
+func _process(delta):
+	elapsed += delta
 
 
 func _physics_process(delta):
@@ -23,7 +28,9 @@ func _physics_process(delta):
 
 
 func _on_TagDetector_area_entered(body: PhysicsBody2D) -> void:
-	swap_state()
+	if elapsed > elapsed_threshold:
+		swap_state()
+		elapsed = 0
 
 
 func swap_state() -> void:
@@ -43,3 +50,11 @@ func change_state(new_state_name):
 	state.name = new_state_name
 	add_child(state)
 
+
+func freeze() -> void:
+	Global._freeze(state, opponent_sprite) # think this sprite isn't the correct reference
+func unfreeze() -> void:
+	Global._unfreeze(state, opponent_sprite) # think this sprite isn't the correct reference
+	opponent_sprite.play("llama")
+func flash_sprite() -> void:
+	Global._flash_sprite(opponent_sprite)

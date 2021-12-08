@@ -16,17 +16,20 @@ func _ready():
 	popup()
 
 func change_menu_color():
-	$Resume.color = Color("#2e1a2e")
-	$Restart.color = Color("#2e1a2e")
-	$Quit.color = Color("#2e1a2e")
+	var color_base = Color("#2e1a2e")
+	var color_highlight = Color("#bbabbb")
+	
+	$Resume.color = color_base
+	$Restart.color = color_base
+	$Quit.color = color_base
 	
 	match selected_menu:
 		0:
-			$Resume.color = Color("#bbabbb")
+			$Resume.color = color_highlight
 		1:
-			$Restart.color = Color("#bbabbb")
+			$Restart.color = color_highlight
 		2:
-			$Quit.color = Color("#bbabbb")
+			$Quit.color = color_highlight
 
 
 func _input(event):
@@ -66,5 +69,4 @@ func _input(event):
 					get_tree().quit()
 
 func reset_game() -> void:
-	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
-	Global.stopwatch = 0
+	Global._reset_game()
