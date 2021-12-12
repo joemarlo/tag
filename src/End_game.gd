@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
@@ -20,26 +20,42 @@ func end_game() -> void:
 
 func win_game() -> void:
 	freeze_game()
-	# TODO: shake stopwatch or something
+	$Win.show()
 	restart_game()
 
 
 func lose_game() -> void:
 	freeze_game()
+	$Lose.show()
 	restart_game()
 
 
 func freeze_game() -> void:
 	player.freeze()
 	opponent.freeze()
+	freeze_enemies()
 
 
 func restart_game() -> void:
-	# pause before showing menu
-	yield(get_tree().create_timer(1.5), "timeout")
-
+	
+	# disable input and pause
+	get_tree().get_root().set_disable_input(true)
+	yield(get_tree().create_timer(4), "timeout")
+	
 	# unfreeze characters
+	get_tree().get_root().set_disable_input(false)
 	player.unfreeze()
 	opponent.unfreeze()
+	unfreeze_enemies()
 	
 	Global._reset_game()
+
+
+func freeze_enemies() -> void:
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		enemy.freeze()
+func unfreeze_enemies() -> void:
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		enemy.unfreeze()

@@ -3,6 +3,11 @@ class_name Enemy
 
 var kill_time_bonus = 3
 var label_color = Color("#0fab3e")
+var d_start = 0.0
+var d_end = 0.0
+onready var player = get_node("/root/LevelCity/Player")
+onready var timeAddedLabel = player.get_node('TimeAdded')
+onready var _sprite = $enemy
 
 
  # overrides native class when calling this function
@@ -14,8 +19,19 @@ func _init():
 
 
 func _ready() -> void:
+	add_to_group("Enemies")
 	set_physics_process(false)
 	_velocity.x = -speed.x
+
+
+func _physics_process(delta: float) -> void:
+	_velocity.y += gravity * delta
+	
+	# bounce off walls
+	if is_on_wall():
+		_velocity *= -1.0
+		
+	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
 
 func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
@@ -33,30 +49,17 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	queue_free()
 
 
-func _physics_process(delta: float) -> void:
-	_velocity.y += gravity * delta
-	
-	# bounce off walls
-	if is_on_wall():
-		_velocity *= -1.0
-		
-	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
-
-
 func time_bonus() -> void:
 	# add time to stopwatch
 	Global.stopwatch += kill_time_bonus
 	
-	# create label TODO: this doesn't show
-	create_label()
+	# create label TODO: this doesn't disappear
+#	timeAddedLabel.show()
+#	yield(get_tree().create_timer(1), "timeout")
+#	timeAddedLabel.hide()
 
 
-func create_label() -> void:
-	var label_node = Label.new()
-	self.add_child(label_node)
-	label_node.set_owner(get_tree().get_edited_scene_root())
-	label_node.text = "+" + str(kill_time_bonus) + " sec"
-#	label_node.rect_position = Vector2(0, 0)
-	label_node.add_color_override("font_color", label_color)
-	label_node.add_font_override("font", load('assets/fonts/FFFORWA.tres'))
-#	print(label_node.text)
+func freeze() -> void:
+	Global._freeze(self, _sprite)
+func unfreeze() -> void:
+	Global._unfreeze(self, _sprite)

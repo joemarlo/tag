@@ -15,7 +15,7 @@ onready var state_factory = Opponent_state_factory.new()
 
 
 func _ready():
-	change_state("chase")
+	change_state("evade")
 
 
 func _process(delta):

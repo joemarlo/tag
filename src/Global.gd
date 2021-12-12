@@ -21,7 +21,8 @@ func _freeze(character, character_sprite) -> void:
 	character.set_physics_process(false)
 	character.set_process(false)
 	character_sprite.set_process(false)
-	character_sprite.stop()
+	if character_sprite.get_class() == 'AnimatedSprite':
+		character_sprite.stop()
 
 
 func _unfreeze(character, character_sprite) -> void:

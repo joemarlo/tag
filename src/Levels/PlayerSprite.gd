@@ -7,7 +7,7 @@ func _process(_delta):
 	sprite_animate()
 
 
-# this is a mess
+# this is a mess; should probably use a signal instead of global
 func sprite_animate() -> void:
 	var sprite_red = Global.opponent_state == 'evade'
 	
