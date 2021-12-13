@@ -40,7 +40,7 @@ func restart_game() -> void:
 	
 	# disable input and pause
 	get_tree().get_root().set_disable_input(true)
-	yield(get_tree().create_timer(4), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	
 	# unfreeze characters
 	get_tree().get_root().set_disable_input(false)
