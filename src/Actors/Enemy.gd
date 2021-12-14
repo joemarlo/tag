@@ -6,7 +6,7 @@ var label_color = Color("#0fab3e")
 var d_start = 0.0
 var d_end = 0.0
 onready var player = get_node("/root/LevelCity/Player")
-onready var timeAddedLabel = player.get_node('TimeAdded')
+#onready var timeAddedLabel = player.get_node('TimeAdded')
 onready var _sprite = $enemy
 
 
@@ -42,21 +42,11 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	get_node("CollisionShape2D").disabled = true
 	
 	# add time bonus
-	time_bonus()
+	player.time_added()
 	
 	# otherwise shake camera and delete the node (i.e. kill enemy)
 	get_node("../Player/Camera2D").add_trauma(0.45)
 	queue_free()
-
-
-func time_bonus() -> void:
-	# add time to stopwatch
-	Global.stopwatch += kill_time_bonus
-	
-	# create label TODO: this doesn't disappear
-#	timeAddedLabel.show()
-#	yield(get_tree().create_timer(1), "timeout")
-#	timeAddedLabel.hide()
 
 
 func freeze() -> void:

@@ -5,10 +5,18 @@ export var stomp_impulse = 1000.0
 var n_jumps = 0
 var can_jump = false
 var friction = Vector2(0.15, 0.0) #friction.y not implemented
-var wall_friction = 0.6 # multiplier
+var wall_friction = 0.3 # multiplier
 var enemy_time_penalty = -3
+var enemy_time_bonus = 3
+var label_position_offset = Vector2(0, -125)
+var label_tween_duration = 1.5
 onready var _sprite = $AnimatedSprite
 onready var camera = $Camera2D
+
+onready var time_added_tween = $TimeAddedTween
+onready var time_added_label = time_added_tween.get_node('TimeAdded')
+onready var time_removed_tween = $TimeRemovedTween
+onready var time_removed_label = time_removed_tween.get_node('TimeRemoved')
 
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
@@ -78,6 +86,23 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 func time_penalty() -> void:
 	# add time to stopwatch
 	Global.stopwatch += enemy_time_penalty
+	
+	# show label
+	time_removed_label.set_global_position(self.get_global_position() + label_position_offset)
+	time_removed_label.modulate.a = 0.95
+	time_removed_tween.interpolate_property(time_removed_label, "modulate:a", 0.95, 0, label_tween_duration)
+	time_removed_tween.start()
+
+
+func time_added() -> void:
+	# remove time from stopwatch
+	Global.stopwatch += enemy_time_bonus
+	
+	# show label
+	time_added_label.set_global_position(self.get_global_position() + label_position_offset)
+	time_added_label.modulate.a = 0.95
+	time_added_tween.interpolate_property(time_added_label, "modulate:a", 0.95, 0, label_tween_duration)
+	time_added_tween.start()
 
 
 func freeze() -> void:

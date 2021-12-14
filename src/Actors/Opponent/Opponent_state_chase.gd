@@ -8,6 +8,7 @@ func _ready():
 	print('opponent state: chase')
 	Global.opponent_state = 'chase'
 	stall(self)
+	opponent.set_collision_mask_bit(4, false)
 
 
 func _process(delta):
@@ -26,3 +27,4 @@ func chase() -> void:
 		velocity = velocity * rand_range(0.1, 1.9)
 	velocity = opponent.move_and_slide(velocity)
 	flip_sprite(velocity)
+#	self.set_collision_layer()

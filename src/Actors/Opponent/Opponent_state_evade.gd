@@ -9,6 +9,7 @@ func _ready():
 	print('opponent state: evade')
 	Global.opponent_state = 'evade'
 	stall(player)
+	opponent.set_collision_mask_bit(4, true)
 
 
 func _process(delta):
@@ -28,4 +29,3 @@ func evade(delta) -> void:
 	velocity = opponent.move_and_slide(velocity)
 	velocity.y += gravity * delta # add gravity only during evade so opponent doesn't float away
 	flip_sprite(velocity)
-

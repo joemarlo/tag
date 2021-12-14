@@ -3,8 +3,8 @@ class_name Actor
 
 const FLOOR_NORMAL: = Vector2.UP #Vector2(0, -1)
 
-var speed: = Vector2(900.0, 1400.0)
-var gravity: = 1500.0
+var speed: = Vector2(700.0, 1200.0)
+var gravity: = 1700.0
 
 var _velocity: = Vector2.ZERO
 
