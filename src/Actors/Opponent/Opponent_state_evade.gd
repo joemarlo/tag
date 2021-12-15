@@ -10,6 +10,7 @@ func _ready():
 	Global.opponent_state = 'evade'
 	stall(player)
 	opponent.set_collision_mask_bit(4, true)
+	Global.stopwatch = 0.0
 
 
 func _process(delta):

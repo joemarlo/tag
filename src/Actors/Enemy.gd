@@ -41,10 +41,11 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 		return
 	get_node("CollisionShape2D").disabled = true
 	
+	## otherwise
 	# add time bonus
-	player.time_added()
+	body.time_added()
 	
-	# otherwise shake camera and delete the node (i.e. kill enemy)
+	# shake camera and delete the node (i.e. kill enemy)
 	get_node("../Player/Camera2D").add_trauma(0.45)
 	queue_free()
 

@@ -9,6 +9,7 @@ func _ready():
 	Global.opponent_state = 'chase'
 	stall(self)
 	opponent.set_collision_mask_bit(4, false)
+	Global.stopwatch = 0.0
 
 
 func _process(delta):

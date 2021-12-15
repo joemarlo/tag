@@ -6,7 +6,7 @@ class_name Opponent_state
 var change_state
 var persistent_state
 var run_speed = 650.0
-var freeze_length = 1
+var freeze_length = 1.5
 onready var player = get_node("/root/LevelCity/Player")
 onready var player_sprite = player.get_node("AnimatedSprite")
 onready var opponent = get_node("/root/LevelCity/Opponent")

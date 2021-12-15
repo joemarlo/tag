@@ -4,7 +4,7 @@ class_name Player
 export var stomp_impulse = 1000.0
 var n_jumps = 0
 var can_jump = false
-var friction = Vector2(0.15, 0.0) #friction.y not implemented
+var friction = Vector2(0.1, 0.0) #friction.y not implemented
 var wall_friction = 0.3 # multiplier
 var enemy_time_penalty = -3
 var enemy_time_bonus = 3
@@ -19,6 +19,14 @@ onready var time_removed_tween = $TimeRemovedTween
 onready var time_removed_label = time_removed_tween.get_node('TimeRemoved')
 
 
+func _physics_process(delta: float) -> void:
+	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
+	var direction: = get_direction()
+	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
+	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, true) 
+	can_jump = can_jump()
+	
+
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
@@ -27,14 +35,6 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	if body.get_class() == 'Enemy':
 		time_penalty()
 		camera.add_trauma(0.6)
-
-
-func _physics_process(delta: float) -> void:
-	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
-	var direction: = get_direction()
-	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, true) 
-	can_jump = can_jump()
 
 
 func get_direction() -> Vector2:

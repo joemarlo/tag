@@ -1,7 +1,7 @@
 extends Node
 
 var stopwatch = 0.0 
-var stopwatch_range = [-25, 25]
+var stopwatch_range = [-30, 30]
 var opponent_state
 
 func _reset_game() -> void:
@@ -10,7 +10,7 @@ func _reset_game() -> void:
 
 
 func _flash_sprite(_sprite) -> void:
-	for i in range(4):
+	for i in range(6):
 		_sprite.modulate = Color("#f25c5c")
 		yield(get_tree().create_timer(0.08), "timeout")
 		_sprite.modulate = Color(1, 1, 1)
