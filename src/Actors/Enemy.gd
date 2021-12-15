@@ -3,11 +3,8 @@ class_name Enemy
 
 var kill_time_bonus = 3
 var label_color = Color("#0fab3e")
-var d_start = 0.0
-var d_end = 0.0
 onready var player = get_node("/root/LevelCity/Player")
-#onready var timeAddedLabel = player.get_node('TimeAdded')
-onready var _sprite = $enemy
+onready var _sprite = $AnimatedSprite
 
 
  # overrides native class when calling this function
@@ -15,7 +12,7 @@ func get_class(): return "Enemy"
 
 
 func _init():
-	speed = Vector2(600.0, 1400.0)
+	speed = Vector2(400.0, 1200.0)
 
 
 func _ready() -> void:
@@ -32,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		_velocity *= -1.0
 		
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
+	flip_sprite(_velocity)
 
 
 func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
@@ -48,6 +46,13 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	# shake camera and delete the node (i.e. kill enemy)
 	get_node("../Player/Camera2D").add_trauma(0.45)
 	queue_free()
+
+
+func flip_sprite(velocity):
+	if velocity.x < 0:
+		_sprite.set_flip_h(true)
+	elif velocity.x > 0:
+		_sprite.set_flip_h(false)
 
 
 func freeze() -> void:

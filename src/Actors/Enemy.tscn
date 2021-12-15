@@ -1,8 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/enemy.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/opponent.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprite_enemy/llama_baby1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprite_enemy/llama_baby2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "llama_baby",
+"speed": 3.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 52, 24 )
@@ -16,7 +26,15 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -5, -66.25 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+animation = "llama_baby"
+playing = true
+
 [node name="enemy" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -47.5 )
 texture = ExtResource( 1 )
 normal_map = ExtResource( 3 )

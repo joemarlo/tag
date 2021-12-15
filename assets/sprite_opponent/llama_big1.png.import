@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lama_sprite_1.png-8dbccd3a647f8f464a22684f759c7dce.stex"
+path="res://.import/llama_big1.png-316e32d1c926c9d8495ce0ce6fa6e06f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite_opponent/lama_sprite_1.png"
-dest_files=[ "res://.import/lama_sprite_1.png-8dbccd3a647f8f464a22684f759c7dce.stex" ]
+source_file="res://assets/sprite_opponent/llama_big1.png"
+dest_files=[ "res://.import/llama_big1.png-316e32d1c926c9d8495ce0ce6fa6e06f.stex" ]
 
 [params]
 

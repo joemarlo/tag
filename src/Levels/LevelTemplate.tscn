@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Train2.gd" type="Script" id=2]
@@ -31,14 +31,8 @@
 [ext_resource path="res://assets/dust/dust1.png" type="Texture" id=29]
 [ext_resource path="res://assets/dust/dust3.png" type="Texture" id=30]
 [ext_resource path="res://assets/dust/dust4.png" type="Texture" id=31]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_5.png" type="Texture" id=32]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_1.png" type="Texture" id=33]
 [ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=34]
 [ext_resource path="res://src/Levels/PlayerSprite.gd" type="Script" id=35]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_4.png" type="Texture" id=36]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_0.png" type="Texture" id=37]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_2.png" type="Texture" id=38]
-[ext_resource path="res://assets/sprite_opponent/lama_sprite_3.png" type="Texture" id=39]
 [ext_resource path="res://assets/stopwatch/background.png" type="Texture" id=40]
 [ext_resource path="res://assets/stopwatch/progress.png" type="Texture" id=41]
 [ext_resource path="res://src/Stopwatch.gd" type="Script" id=42]
@@ -54,18 +48,21 @@
 [ext_resource path="res://art/Tilemap.png" type="Texture" id=52]
 [ext_resource path="res://src/Levels/black_tileset.tres" type="TileSet" id=53]
 [ext_resource path="res://assets/foreground/foregrond_infront.png" type="Texture" id=54]
+[ext_resource path="res://assets/sprite_opponent/llama_big3.png" type="Texture" id=55]
+[ext_resource path="res://assets/sprite_opponent/llama_big2.png" type="Texture" id=56]
+[ext_resource path="res://assets/sprite_opponent/llama_big1.png" type="Texture" id=57]
 
 [sub_resource type="SpriteFrames" id=35]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "dust_none",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 29 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "dust",
 "speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "dust_none",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=60]
@@ -427,10 +424,10 @@ colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.0784314 )
 
 [sub_resource type="SpriteFrames" id=36]
 animations = [ {
-"frames": [ ExtResource( 37 ), ExtResource( 33 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 32 ) ],
+"frames": [ ExtResource( 57 ), ExtResource( 56 ), ExtResource( 55 ) ],
 "loop": true,
-"name": "llama",
-"speed": 10.0
+"name": "llama_big",
+"speed": 3.0
 } ]
 
 [sub_resource type="ShaderMaterial" id=38]
@@ -463,7 +460,7 @@ __meta__ = {
 }
 
 [node name="Sun" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.4 )
+motion_scale = Vector2( 0.1, 0.5 )
 motion_offset = Vector2( -350, -900 )
 script = ExtResource( 45 )
 
@@ -501,7 +498,7 @@ __meta__ = {
 }
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-motion_scale = Vector2( 0.25, 0.86 )
+motion_scale = Vector2( 0.25, 0.84 )
 motion_offset = Vector2( -1250, 300 )
 
 [node name="Cityscape" type="TextureRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer5"]
@@ -816,9 +813,9 @@ collision_mask = 9
 script = ExtResource( 23 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Opponent"]
-position = Vector2( -3.22356, -1.75007 )
-scale = Vector2( 1.10253, 0.9375 )
-polygon = PoolVector2Array( -26.1006, -10.9333, 4, -15, 4.73779, -72.8, 26.5059, -72.8, 28, -16, 29, 27, -27.9146, 24.2666 )
+position = Vector2( 1.79831, -12.4575 )
+scale = Vector2( 2.10584, 1.6651 )
+polygon = PoolVector2Array( -21.5249, -28.5525, 14.7888, -30.6721, 14.2301, -77.3043, 30.9902, -76.5978, 28, -16, 26.5209, 24.4387, -27.9146, 24.2666 )
 
 [node name="VisibilityEnabler2D2" type="VisibilityEnabler2D" parent="Opponent"]
 visible = false
@@ -829,19 +826,21 @@ process_parent = true
 physics_process_parent = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Opponent"]
-position = Vector2( 26.0002, -44 )
-scale = Vector2( 3.52083, 3.52083 )
+position = Vector2( 5.88232, -61.1764 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 36 )
-animation = "llama"
+animation = "llama_big"
+frame = 2
+playing = true
 
 [node name="TagDetector" type="Area2D" parent="Opponent"]
 collision_layer = 4
 collision_mask = 9
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Opponent/TagDetector"]
-position = Vector2( -7.25815, -2.45735 )
-scale = Vector2( 1.37097, 1.07713 )
-polygon = PoolVector2Array( -22.4233, -12.573, 4, -15, 4, -67, 27, -67, 28, -16, 29, 27, -23.1528, 25.4912 )
+position = Vector2( 12.8364, -25.2558 )
+scale = Vector2( 2.00504, 1.66254 )
+polygon = PoolVector2Array( -31.6326, -25.1442, 2.98608, -25.8517, 4.74634, -73.2633, 30.5637, -73.9709, 28, -16, 29.3901, 35.0049, -39.2605, 34.2972 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1566, 2794 )
