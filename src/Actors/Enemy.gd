@@ -5,6 +5,7 @@ var kill_time_bonus = 3
 var label_color = Color("#0fab3e")
 onready var player = get_node("/root/LevelCity/Player")
 onready var _sprite = $AnimatedSprite
+onready var camera = get_node("../Player/Camera2D")
 
 
  # overrides native class when calling this function
@@ -43,8 +44,15 @@ func _on_StompDetector_body_entered(body: PhysicsBody2D) -> void:
 	# add time bonus
 	body.time_added()
 	
-	# shake camera and delete the node (i.e. kill enemy)
-	get_node("../Player/Camera2D").add_trauma(0.45)
+	# shake camera
+	camera.add_trauma(0.45)
+	
+	# animate poof
+	_sprite.play("poof")
+	self.freeze()
+	yield(get_tree().create_timer(0.4), "timeout")
+	
+	# delete the node
 	queue_free()
 
 

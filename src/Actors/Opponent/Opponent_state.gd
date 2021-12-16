@@ -40,6 +40,6 @@ func freeze() -> void:
 	Global._freeze(self, opponent_sprite)
 func unfreeze() -> void:
 	Global._unfreeze(self, opponent_sprite)
-	opponent_sprite.play("llama")
+	opponent_sprite.play("llama_big")
 func flash_sprite() -> void:
 	Global._flash_sprite(opponent_sprite)

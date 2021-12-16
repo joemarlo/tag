@@ -47,15 +47,18 @@ func get_direction() -> Vector2:
 func can_jump() -> bool:
 	n_jumps += int( Input.is_action_just_pressed("jump") )
 	n_jumps = 0 if is_on_floor() else n_jumps
-	n_jumps = 1 if is_on_wall_and_input() else n_jumps
+	n_jumps = 1 if wall_hold() else n_jumps
 	can_jump = is_on_floor() \
-		or is_on_wall_and_input() \
+		or wall_hold() \
 		or (n_jumps < 2)
 	return can_jump
 
 
-func is_on_wall_and_input() -> bool:
-	return is_on_wall() and (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"))
+func wall_hold() -> bool:
+	return is_on_wall() and \
+		(Input.is_action_pressed("move_left") or \
+		Input.is_action_pressed("move_right")) #or \
+#		Input.is_action_pressed("wall_hold"))
 
 
 func calculate_move_velocity(
@@ -71,7 +74,7 @@ func calculate_move_velocity(
 		out.y = speed.y * direction.y
 	if is_jump_interrupted:
 		out.y = 0.0
-	if is_on_wall_and_input():
+	if wall_hold():
 		var _wall_friction = 1 if Input.is_action_pressed("jump") else wall_friction
 		out.y = out.y * _wall_friction
 	return out
