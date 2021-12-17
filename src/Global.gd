@@ -5,8 +5,10 @@ var stopwatch_range = [-30, 30]
 var opponent_state
 
 func _reset_game() -> void:
-	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+#	get_tree().change_scene("res://src/Levels/LevelTemplate.tscn")
+	get_tree().reload_current_scene()
 	Global.stopwatch = 0.0
+
 
 
 func _flash_sprite(_sprite) -> void:

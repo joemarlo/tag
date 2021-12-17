@@ -1,7 +1,7 @@
 extends Opponent_state
 class_name Opponent_state_evade
 
-var evade_radius = 700
+var evade_radius = 500
 var velocity = Vector2.ZERO
 var friction = Vector2(0.8, 0.0) #friction.y not implemented
 

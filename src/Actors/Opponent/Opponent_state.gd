@@ -13,6 +13,7 @@ onready var opponent = get_node("/root/LevelCity/Opponent")
 onready var opponent_sprite = opponent.get_node("AnimatedSprite")
 onready var camera = player.get_node("Camera2D")
 onready var stopwatch = get_node("/root/LevelCity/Stopwatch")
+onready var nav_mesh = get_node("/root/LevelCity/Navigation2D")
 
 
 func setup(change_state, opponent_sprite, persistent_state):
