@@ -840,7 +840,7 @@ position = Vector2( 5.88232, -61.1764 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 36 )
 animation = "llama_big"
-frame = 2
+frame = 1
 playing = true
 
 [node name="TagDetector" type="Area2D" parent="Opponent"]
@@ -924,7 +924,6 @@ __meta__ = {
 
 [node name="MenuPopup" type="Popup" parent="Menu"]
 pause_mode = 2
-visible = true
 margin_left = 200.0
 margin_top = 200.0
 margin_right = 240.0
