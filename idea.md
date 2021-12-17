@@ -1,6 +1,6 @@
 # tag
 
-Platformer-based tag game set in a city based on the cityscape artwork. 
+Platformer-based tag game set in a city based on the cityscape artwork.
 
 ## Gameplay
 Player vs AI or player vs player. Players can hide behind buildings. Stamina bar (not shown) where leading player has slightly less. Animation and freeze for tagged player when tagged to give other player a headstart.
@@ -18,5 +18,4 @@ Celeste like but less ambitious.
 One level. 2D only with one layer. Basic AI. Export to html5.
 
 ## Todo / issues
-- Need pathfinding for AI
-
+- AI sometimes get stuck
